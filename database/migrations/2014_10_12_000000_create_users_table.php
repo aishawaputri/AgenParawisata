@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('level', ['admin','operator','pelanggan','pemilik']) ->default('pelanggan');
-            $table->tinyInteger('aktif')->length(1)->default('1');
+            $table->enum('aktif', ['1', '0'])->default('1');
             $table->string('remember_token', 100)->nullable();
             $table->timestamps();
         });

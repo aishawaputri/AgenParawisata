@@ -12,19 +12,22 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="nama_karyawan">Nama Karyawan</label>
-                        <input type="text" class="form-control
-@error('nama_karyawan') is-invalid @enderror" id="nama_karyawan" placeholder="Masukkan Nama Karyawan"
-                            name="nama_karyawan" value="{{$karyawan->nama_karyawan ?? old('nama_karyawan') }}">
-                        @error('nama_karyawan')
-                        <span class="textdanger">{{ $message }}</span>
-                        @enderror
+                        <label for="id_user">Nama Karyawan</label>
+                        <div class="input-group">
+                            <input type="hidden" name="id_user" id="id_user" value="{{$karyawan->fuser->id ??old('id_user')}}">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" 
+                            placeholder="Pilih nama karyawan" id="name" name="name"
+                                value="{{$karyawan->fuser->name ?? old('name')}}" aria-label=" ID User"
+                                ariadescribedby="cari" readonly>
+                            <button class="btn btn-warning" type="button" data-bs-toggle="modal" id="cari"
+                                data-bs-target="#staticBackdrop"></i>
+                                Cari</button>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <textarea rows="5" class="form-control
-@error('alamat') is-invalid @enderror" id="alamat" name="alamat"
-                            value="{{$karyawan->alamat ?? old('alamat') }}">{{old('alamat')}}</textarea>
+                        <textarea rows="3" class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat">
+                            {{$karyawan->alamat ?? old('alamat') }}</textarea>
                         @error('alamat') <span class="textdanger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
@@ -40,25 +43,11 @@
                         <label for="exampleInputJabatan">Jabatan</label>
                         <select class="form-control @error('jabatan') is-invalid @enderror" id="exampleInputlevel"
                             placeholder="Pilih Jabatan" name="jabatan">
-                            <option value="admin" @if(old('level')=='admin' )selected @endif>Admin</option>
-                            <option value="operator" @if(old('level')=='operator' )selected @endif>Operator</option>
-                            <option value="pemilik" @if(old('level')=='pemilik' )selected @endif>Pemilik</option>
+                            <option value="administrasi" @if(old('level', $karyawan->jabatan)=='administrasi')selected @endif>Admin</option>
+                            <option value="operator" @if(old('level', $karyawan->jabatan)=='operator' )selected @endif>Operator</option>
+                            <option value="pemilik" @if(old('level', $karyawan->jabatan)=='pemilik' )selected @endif>Pemilik</option>
                         </select>
                         @error('jabatan') <span class="text-danger">{{$message}}</span> @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="id_user">ID User</label>
-                        <div class="input-group">
-                            <input type="hidden" name="id_user" id="id_user"
-                                value="{{$karyawan->fuser->id ??old('id_user')}}">
-                            <input type="text" class="form-control
-@error('name') is-invalid @enderror" placeholder="ID User" id="name" name="name"
-                                value="{{$karyawan->fuser->name ?? old('name')}}" aria-label=" ID User"
-                                ariadescribedby="cari" readonly>
-                            <button class="btn btn-warning" type="button" data-bs-toggle="modal" id="cari"
-                                data-bs-target="#staticBackdrop"></i>
-                                Cari Data User</button>
-                        </div>
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Simpan</button>

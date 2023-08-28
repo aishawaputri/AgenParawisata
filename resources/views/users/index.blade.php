@@ -9,7 +9,7 @@
         <div class="card overflow-scroll">
             <div class="card-body ">
                 <div class="card-body">
-                    <a href="{{route('users.create')}}" class="btn btn-success mb-2">Tambah <i
+                    <a href="{{route('users.create')}}" class="btn btn-primary mb-2">Tambah <i
                             class="fas fa-plus-square"></i></a>
                     <table class="table table-hover table-bordered table-stripped" id="example2">
                         <thead>
@@ -18,30 +18,29 @@
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>Level</th>
-                                <th>Aktif</th>
                                 <th>Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($users as $key => $user)
+                            @foreach($users as $key => $us)
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->email}}</td>
-                                <td>{{$user->level}}</td>
-                                <td>
-                                    @switch($user->aktif)
-                                    @case('1')
-                                    Ya
-                                    @break
-                                    @case('0')
-                                    Tidak
-                                    @break
-                                    @endswitch
+                                <td>{{$us->name}}</td>
+                                <td>{{$us->email}}</td>
+                                <td id={{$key+1}}>
+                                    @if($us->level == 'admin') 
+                                    Admin
+                                    @elseif($us->level == 'operator')
+                                    Operator
+                                    @elseif($us->level == 'pemilik')
+                                    Pemilik
+                                    @else
+                                    Pelanggan
+                                    @endif
                                 </td>
                                 <td>
-                                    <a href="{{route('users.edit', $user)}}" class="btn btn-primary btn-xs">Edit</a>
-                                    <a href="{{route('users.destroy', $user)}}"
+                                    <a href="{{route('users.edit', $us)}}" class="btn btn-primary btn-xs">Edit</a>
+                                    <a href="{{route('users.destroy', $us)}}"
                                         onclick="notificationBeforeDelete(event, this)"
                                         class="btn btn-danger btn-xs">Delete</a>
                                 </td>
@@ -72,3 +71,4 @@
         }
     }
     </script>
+    @endpush

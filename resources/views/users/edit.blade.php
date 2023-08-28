@@ -27,13 +27,13 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword">Password</label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror"
-                            id="exampleInputPassword" placeholder="Password" name="password">
+                        <input type="text" class="form-control @error('password') is-invalid @enderror"
+                            id="exampleInputPassword" placeholder="Password" name="password" >
                         @error('password') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword">Konfirmasi Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword"
+                        <input type="text" class="form-control" id="exampleInputPassword"
                             placeholder="Konfirmasi Password" name="password_confirmation">
                     </div>
                     <div class="form-group">

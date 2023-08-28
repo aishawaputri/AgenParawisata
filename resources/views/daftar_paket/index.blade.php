@@ -8,7 +8,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a href="{{route('daftar_paket.create')}}" class="btn btn-success mb-2">Tambah <i
+                <a href="{{route('daftar_paket.create')}}" class="btn btn-primary mb-2">Tambah <i
                         class="fas fa-plus-square"></i></a>
                 <table class="table table-hover table-bordered table-stripped" id="example2">
                     <thead>

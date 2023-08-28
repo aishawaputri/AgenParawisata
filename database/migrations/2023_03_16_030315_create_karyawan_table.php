@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('karyawan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_karyawan', 50);
+            $table->unsignedBigInteger('id_user')->length(20);
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->text('alamat');
             $table->string('no_hp', 15);
             $table->enum('jabatan', ['administrasi', 'operator', 'pemilik']);
-            $table->unsignedBigInteger('id_user')->length(20);
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

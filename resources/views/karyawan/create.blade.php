@@ -11,15 +11,20 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="nama_karyawan">Nama Karyawan</label>
-                        <input type="text" class="form-control @error('nama_karyawan') is-invalid @enderror"
-                            id="nama_karyawan" placeholder="Nama Lengkap" name="nama_karyawan"
-                            value="{{old('nama_karyawan')}}">
-                        @error('nama_karyawan') <span class="textdanger">{{$message}}</span> @enderror
+                        <label for="id_user">Nama Karyawan</label>
+                        <div class="input-group">
+                            <input type="hidden" name="id_user" id="id_user" value="{{old('id_user')}}">
+                            <input type="text" class="form-control
+                    @error('name') is-invalid @enderror" placeholder="Pilih Nama Karyawan" id="name" name="name"
+                                value="{{old('name')}}" arialabel="ID User" aria-describedby="cari">
+                            <button class="btn btn-warning" type="button" data-bs-toggle="modal" id="cari"
+                                data-bs-target="#staticBackdrop"></i>
+                                Cari</button>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <textarea rows="5" class="form-control
+                        <textarea rows="3" class="form-control
 @error('alamat') is-invalid @enderror" id="alamat" name="alamat">{{old('alamat')}}</textarea>
                         @error('alamat') <span class="textdanger">{{$message}}</span> @enderror
                     </div>
@@ -30,27 +35,16 @@
                         @error('no_hp') <span class="textdanger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputJabatan">Jabatan</label>
-                        <select class="form-control @error('jabatan') is-invalid @enderror" id="exampleInputlevel"
+                        <label for="jabatan">Jabatan</label>
+                        <select class="form-control @error('jabatan') is-invalid @enderror" id="jabatan"
                             placeholder="Pilih Jabatan" name="jabatan">
-                            <option value="admin" @if(old('level')=='admin' )selected @endif>Admin</option>
-                            <option value="operator" @if(old('level')=='operator' )selected @endif>Operator</option>
-                            <option value="pemilik" @if(old('level')=='pemilik' )selected @endif>Pemilik</option>
+                            <option value="administrasi">Administrasi</option>
+                            <option value="operator" >Operator</option>
+                            <option value="pemilik" >Pemilik</option>
                         </select>
                         @error('jabatan') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="id_user">ID User</label>
-                        <div class="input-group">
-                            <input type="hidden" name="id_user" id="id_user" value="{{old('id_user')}}">
-                            <input type="text" class="form-control
-                    @error('name') is-invalid @enderror" placeholder="ID User" id="name" name="name"
-                                value="{{old('name')}}" arialabel="ID User" aria-describedby="cari" readonly>
-                            <button class="btn btn-warning" type="button" data-bs-toggle="modal" id="cari"
-                                data-bs-target="#staticBackdrop"></i>
-                                Cari Data User</button>
-                        </div>
-                    </div>
+                
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Simpan</button>
                         <a href="{{route('karyawan.index')}}" class="btn btn-default">Batal</a>
@@ -74,8 +68,6 @@
                                     <th>ID</th>
                                     <th>Nama</th>
                                     <th>Email</th>
-                                    <th>Level</th>
-                                    <th>Aktif</th>
                                     <th>Opsi</th>
                                 </tr>
                             </thead>
@@ -85,8 +77,6 @@
                                     <td>{{$key+1}}</td>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
-                                    <td>{{$user->level}}</td>
-                                    <td>{{$user->aktif}}</td>
                                     <td>
                                         <button type="button" class="btn btn-primary btn-xs"
                                             onclick="pilih('{{$user->id}}', '{{$user->name}}')" data-bs-dismiss="modal">
@@ -110,8 +100,9 @@
         });
         //Fungsi pilih untuk memilih data bidang studi dan mengirimkan data Bidang Studi dari Modal ke form tambah
 
-        function pilih(id, bstud) {
-            document.getElementById('id_user').value = id
-            document.getElementById('name').value = bstud
+        function pilih(id, name) {
+            document.getElementById('id_user').value = id;
+            document.getElementById('name').value = name;
+            $('#staticBackdrop').modal('hide'); // Menutup modal setelah dipilih
         }
         </script>

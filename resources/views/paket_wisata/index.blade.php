@@ -8,7 +8,7 @@
     <div class="col-12">
         <div class="card overflow-scroll">
             <div class="card-body pe-3">
-                <a href="{{route('paket_wisata.create')}}" class="btn btn-success mb-2">Tambah <i
+                <a href="{{route('paket_wisata.create')}}" class="btn btn-primary mb-2">Tambah <i
                         class="fas fa-plus-square"></i></a>
                 <table class="table table-hover table-bordered table-stripped" id="example2">
                     <thead>
