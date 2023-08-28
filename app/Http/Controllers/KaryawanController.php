@@ -36,18 +36,18 @@ class KaryawanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_karyawan' => 'required',
+            'id_user' => 'required' , 
             'alamat' => 'required',
             'no_hp' => 'required',
-            'jabatan' => 'required',
-            'id_user' => 'required'
-            ]);
-            $array = $request->only([
-            'nama_karyawan','alamat', 'no_hp','jabatan','id_user'
-            ]);
-            $karyawan = Karyawan::create($array);
+            'jabatan' => 'required',       
+        ]);
+        $array = $request->only([
+            'id_user','alamat','no_hp','jabatan'
+        ]);
+        // dd($request);
+            $aryawan = Karyawan::create($array);
             return redirect()->route('karyawan.index')
-            ->with('success_message', 'Berhasil menambah bidang studi baru');
+            ->with('success_message', 'Data berhasil ditambahkan');
     }
 
    
@@ -66,18 +66,16 @@ class KaryawanController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'nama_karyawan' => 'required',
+            'id_user' => 'required' , 
             'alamat' => 'required',
             'no_hp' => 'required',
-            'jabatan' => 'required',
-            'id_user' => 'required'
+            'jabatan' => 'required',     
             ]);
             $karyawan= Karyawan::find($id);
-            $karyawan-> nama_karyawan = $request->nama_karyawan;
+            $karyawan-> id_user = $request->id_user;
             $karyawan-> alamat = $request->alamat;
             $karyawan-> no_hp = $request->no_hp;
             $karyawan-> jabatan = $request->jabatan;
-            $karyawan-> id_user = $request->id_user;
             $karyawan->save();
             return redirect()->route('karyawan.index')->with('success_message', 'Berhasil mengubah Karyawan!');
     }

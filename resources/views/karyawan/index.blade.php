@@ -8,32 +8,38 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a href="{{route('karyawan.create')}}" class="btn btn-success mb-2">Tambah <i
+                <a href="{{route('karyawan.create')}}" class="btn btn-primary mb-2">Tambah <i
                         class="fas fa-plus-square"></i></a>
                 <table class="table table-hover table-bordered table-stripped" id="example2">
-                    <thead>
+                    <thead style="text-align: center">
                         <tr style="background-color:#6495ED">
                             <th>No.</th>
                             <th>Nama Karyawan</th>
-                            <th>Alamat</th>
+                            <th width="25%">Alamat</th>
                             <th>No Telepon</th>
                             <th>Jabatan</th>
-                            <th>ID User</th>
                             <th>Opsi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($karyawan as $key => $karyawan)
+                        @foreach($karyawan as $key => $kr)
                         <tr>
                             <td>{{$key+1}}</td>
-                            <td>{{$karyawan->nama_karyawan}}</td>
-                            <td>{{$karyawan->alamat}}</td>
-                            <td>{{$karyawan->no_hp}}</td>
-                            <td>{{$karyawan->jabatan}}</td>
-                            <td id={{$key+1}}>{{$karyawan->fuser->name}}</td>
+                            <td id={{$key+1}}>{{$kr->fuser->name}}</td>
+                            <td id={{$key+1}}>{{$kr->alamat}}</td>
+                            <td id={{$key+1}}>{{$kr->no_hp}}</td>
+                            <td id={{$key+1}}>
+                                @if($kr->jabatan == 'administrasi') 
+                                Admin
+                                @elseif($kr->jabatan == 'operator')
+                                Operator
+                                @else
+                                Pemilik
+                                @endif
+                            </td>
                             <td>
-                                <a href="{{route('karyawan.edit', $karyawan)}}" class="btn btn-primary btn-xs">Edit</a>
-                                <a href="{{route('karyawan.destroy', $karyawan)}}"
+                                <a href="{{route('karyawan.edit', $kr)}}" class="btn btn-primary btn-xs">Edit</a>
+                                <a href="{{route('karyawan.destroy', $kr)}}"
                                     onclick="notificationBeforeDelete(event, this)"
                                     class="btn btn-danger btn-xs">Delete</a>
                             </td>
@@ -64,3 +70,4 @@ function notificationBeforeDelete(event, el) {
     }
 }
 </script>
+@endpush

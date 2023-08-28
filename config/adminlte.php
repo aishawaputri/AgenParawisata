@@ -322,12 +322,6 @@ return [
                 'icon' => 'fa fa-users',
                 'can' => 'admin-only',
             ], 
-            [
-                'text' => 'Pelanggan',
-                'url' => '/pelanggan',
-                'icon' => 'fa fa-user-tag',
-                'can' => 'admin-only',
-            ], 
         [
             'header' => 'PENGATURAN OPERATOR',
             'can' => 'operator-only'
