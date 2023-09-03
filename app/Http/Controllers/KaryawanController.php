@@ -35,6 +35,7 @@ class KaryawanController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         $request->validate([
             'id_user' => 'required' , 
             'alamat' => 'required',
@@ -44,8 +45,7 @@ class KaryawanController extends Controller
         $array = $request->only([
             'id_user','alamat','no_hp','jabatan'
         ]);
-        // dd($request);
-            $aryawan = Karyawan::create($array);
+            $karyawan = Karyawan::create($array);
             return redirect()->route('karyawan.index')
             ->with('success_message', 'Data berhasil ditambahkan');
     }

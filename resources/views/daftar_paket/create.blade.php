@@ -11,23 +11,14 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="nama_paket">Nama Paket</label>
-                        <input type="text" class="form-control @error('nama_paket') is-invalid @enderror"
-                            id="nama_paket" placeholder="Nama Paket Wisata" name="nama_paket"
-                            value="{{old('nama_paket')}}">
-                        @error('nama_paket') <span class="textdanger">{{$message}}</span> @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="id_paket_wisata">ID Paket Wisata</label>
+                        <label for="id_paket_wisata">Nama Paket</label>
                         <div class="input-group">
-                            <input type="hidden" name="id_paket_wisata" id="id_paket_wisata"
-                                value="{{old('id_paket_wisata')}}">
+                            <input type="hidden" name="id_paket_wisata" id="id_paket_wisata" value="{{old('id_paket_wisata')}}">
                             <input type="text" class="form-control
-                    @error('name') is-invalid @enderror" placeholder="ID Paket Wisata" id="name" name="name"
-                                value="{{old('name')}}" arialabel="ID Paket Wisata" aria-describedby="cari" readonly>
+                    @error('name') is-invalid @enderror" placeholder="Pilih Nama Paket" id="name" name="name"
+                                value="{{old('name')}}" arialabel="ID User" aria-describedby="cari">
                             <button class="btn btn-warning" type="button" data-bs-toggle="modal" id="cari"
-                                data-bs-target="#staticBackdrop"></i>
-                                Cari Data Paket</button>
+                                data-bs-target="#staticBackdrop">Cari</button>
                         </div>
                     </div>
                     <div class="form-group">
@@ -64,31 +55,25 @@
                     <table class="table table-hover table-bordered tablestripped" id="example2">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Nama Paket</th>
                                 <th>Deskripsi</th>
-                                <th>Fasilitas</th>
-                                <th>Itinerary</th>
-                                <th>Diskon</th>
                                 <th>Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($paket_wisata as $key => $pwisata)
+                            @if ($pwisata->status === '0')
                             <tr>
-                                <td>{{$key+1}}</td>
                                 <td>{{$pwisata->nama_paket}}</td>
                                 <td>{{$pwisata->deskripsi}}</td>
-                                <td>{{$pwisata->fasilitas}}</td>
-                                <td>{{$pwisata->itinerary}}</td>
-                                <td>{{$pwisata->diskon}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-xs"
-                                        onclick="pilih('{{$pwisata->id}}', '{{$pwisata->name}}')"
-                                        data-bs-dismiss="modal">
+                                    <button type="button" class="btn btn-primary btn-xs" 
+                                        onclick="pilih('{{$pwisata->id}}', '{{$pwisata->nama_paket}}')"
+                                        data-bs-dismiss="modal" style="display: inline-block; line-height: normal; vertical-align: middle;">
                                         Pilih </button>
                                 </td>
                             </tr>
+                            @endif
                             @endforeach
                         </tbody>
                 </div>

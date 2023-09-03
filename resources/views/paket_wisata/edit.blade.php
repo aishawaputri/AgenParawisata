@@ -22,105 +22,109 @@
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi</label>
-                        <input type="text" class="form-control
+                        <textarea rows="4" class="form-control
     @error('deskripsi') is-invalid @enderror" id="deskripsi" placeholder="Masukkan Fasilitas" name="deskripsi"
-                            value="{{$paket_wisata->deskripsi ?? old('deskripsi') }}">
+                            >{{$paket_wisata->deskripsi ?? old('deskripsi') }}</textarea>
                         @error('deskripsi')
                         <span class="textdanger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="fasilitas">Fasilitas</label>
-                        <input type="text" class="form-control
+                        <textarea rows="4" class="form-control
 @error('fasilitas') is-invalid @enderror" id="fasilitas" placeholder="Masukkan Fasilitas" name="fasilitas"
-                            value="{{$paket_wisata->fasilitas ?? old('fasilitas') }}">
+                            >{{$paket_wisata->fasilitas ?? old('fasilitas') }}</textarea>
                         @error('fasilitas')
                         <span class="textdanger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="itinerary">Itinerary</label>
-                        <input type="text" class="form-control
+                        <textarea rows="5" class="form-control
     @error('itinerary') is-invalid @enderror" id="itinerary" placeholder="Masukkan Fasilitas" name="itinerary"
-                            value="{{$paket_wisata->itinerary ?? old('itinerary') }}">
+                            >{{$paket_wisata->itinerary ?? old('itinerary') }}</textarea>
                         @error('itinerary')
                         <span class="textdanger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="diskon">Diskon</label>
-                        <input type="number" class="form-control
-@error('diskon') is-invalid @enderror" id="diskon" placeholder="Masukkan Diskon" name="diskon"
+                        <input type="number" class="form-control @error('diskon') is-invalid @enderror" 
+                            id="diskon" placeholder="Masukkan Diskon" name="diskon"
                             value="{{$paket_wisata->diskon ?? old('diskon') }}">
-                        @error('diskon')
-                        <span class="textdanger">{{ $message }}</span>
+                        @error('diskon') <span class="textdanger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="foto1" class="form-label">Foto 1</label>
-                        @if($paket_wisata->foto1)
-                        <img src="{{ asset('storage/'.$paket_wisata->foto1) }}"
-                            class="img-preview img-fluid mb-3 col-sm-5 d-block" style="width: 100px;">
-                        @else
-                        <img class="img-preview img-fluid mb-3 col-sm-5 d-block">
-                        @endif
-                        <input class="form-control @error('foto1') is-invalid @enderror" type="file" id="foto1"
-                            name="foto1" value="{{$paket_wisata->foto1 ?? old('foto1')}}" onchange="previewImage()">
-                        @error('foto1') <span class="textdanger">{{$message}}</span> @enderror
+                        <label for="foto1">Foto 1</label>
+                        @if ($paket_wisata->foto1)
+                        <p>Previous File: <a
+                            href="{{ asset('/storage/foto1/' . $paket_wisata->foto1) }}"
+                            target="_blank">{{ $paket_wisata->foto1 }}</a></p>
+                            @endif
+                        <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png</small>
+                        <input type="file" class="form-control" id="foto1" enctype="multipart/form-data" name="foto1" onchange="validateFile(this,  'fileError1');">
+                        <div class="invalid-feedback" id="fileError1" style="display: none;">Tipe file tidak valid. Harap unggah file dengan ekstensi yang diizinkan.</div>
+                        @error('foto1') <span class="invalid" role="alert">{{$message}}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="foto2" class="form-label">Foto 2</label>
-                        @if($paket_wisata->foto2)
-                        <img src="{{ asset('storage/'.$paket_wisata->foto2) }}"
-                            class="img-preview2 img-fluid mb-3 col-sm-5 d-block" style="width: 100px;">
-                        @else
-                        <img class="img-preview2 img-fluid mb-3 col-sm-5 d-block">
-                        @endif
-                        <input class="form-control @error('foto2') is-invalid @enderror" type="file" id="foto2"
-                            name="foto2" value="{{$paket_wisata->foto2 ?? old('foto2')}}" onchange="previewImage2()">
-                        @error('foto2') <span class="textdanger">{{$message}}</span> @enderror
+                        <label for="foto2">Foto 2</label>
+                        @if ($paket_wisata->foto2)
+                        <p>Previous File: <a
+                            href="{{ asset('/storage/foto2/' . $paket_wisata->foto2) }}"
+                            target="_blank">{{ $paket_wisata->foto2 }}</a></p>
+                            @endif
+                        <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png</small>
+                        <input type="file" class="form-control" id="foto2" enctype="multipart/form-data" name="foto2" onchange="validateFile(this, 'fileError2');">
+                        <div class="invalid-feedback" id="fileError2" style="display: none;">Tipe file tidak valid. Harap unggah file dengan ekstensi yang diizinkan.</div>
+                        @error('foto2') <span class="invalid" role="alert">{{$message}}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="foto3" class="form-label">Foto 3</label>
-                        @if($paket_wisata->foto3)
-                        <img src="{{ asset('storage/'.$paket_wisata->foto3) }}"
-                            class="img-preview3 img-fluid mb-3 col-sm-5 d-block" style="width: 100px;">
-                        @else
-                        <img class="img-preview3 img-fluid mb-3 col-sm-5 d-block">
-                        @endif
-                        <input class="form-control @error('foto3') is-invalid @enderror" type="file" id="foto3"
-                            name="foto3" value="{{$paket_wisata->foto3 ?? old('foto3')}}" onchange="previewImage3()">
-                        @error('foto3') <span class="textdanger">{{$message}}</span> @enderror
+                        <label for="foto3">Foto 3</label>
+                        @if ($paket_wisata->foto3)
+                        <p>Previous File: <a
+                            href="{{ asset('/storage/foto3/' . $paket_wisata->foto3) }}"
+                            target="_blank">{{ $paket_wisata->foto3 }}</a></p>
+                            @endif
+                            <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png</small>
+                        <input type="file" class="form-control" id="foto3" enctype="multipart/form-data" name="foto3" onchange="validateFile(this, 'fileError3');">
+                        <div class="invalid-feedback" id="fileError3" style="display: none;">Tipe file tidak valid. Harap unggah file dengan ekstensi yang diizinkan.</div>
+                        @error('foto3') <span class="invalid" role="alert">{{$message}}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="foto4" class="form-label">Foto 4</label>
-                        @if($paket_wisata->foto4)
-                        <img src="{{ asset('storage/'.$paket_wisata->foto4) }}"
-                            class="img-preview4 img-fluid mb-3 col-sm-5 d-block" style="width: 100px;">
-                        @else
-                        <img class="img-preview4 img-fluid mb-3 col-sm-5 d-block">
-                        @endif
-                        <input class="form-control @error('foto4') is-invalid @enderror" type="file" id="foto4"
-                            name="foto4" value="{{$paket_wisata->foto4 ?? old('foto4')}}" onchange="previewImage4()">
-                        @error('foto4') <span class="textdanger">{{$message}}</span> @enderror
+                        <label for="foto4">Foto 4</label>
+                        @if ($paket_wisata->foto4)
+                        <p>Previous File: <a
+                            href="{{ asset('/storage/foto4/' . $paket_wisata->foto4) }}"
+                            target="_blank">{{ $paket_wisata->foto4 }}</a></p>
+                            @endif
+                            <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png</small>
+                        <input type="file" class="form-control" id="foto4" enctype="multipart/form-data" name="foto4" onchange="validateFile(this, 'fileError4');">
+                        <div class="invalid-feedback" id="fileError4" style="display: none;">Tipe file tidak valid. Harap unggah file dengan ekstensi yang diizinkan.</div>
+                        @error('foto4') <span class="invalid" role="alert">{{$message}}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="foto5" class="form-label">Foto 5</label>
-                        @if($paket_wisata->foto5)
-                        <img src="{{ asset('storage/'.$paket_wisata->foto5) }}"
-                            class="img-preview5 img-fluid mb-3 col-sm-5 d-block" style="width: 100px;">
-                        @else
-                        <img class="img-preview5 img-fluid mb-3 col-sm-5 d-block">
-                        @endif
-                        <input class="form-control @error('foto5') is-invalid @enderror" type="file" id="foto5"
-                            name="foto5" value="{{$paket_wisata->foto5 ?? old('foto5')}}" onchange="previewImage5()">
-                        @error('foto5') <span class="textdanger">{{$message}}</span> @enderror
+                        <label for="foto5">Foto 5</label>
+                        @if ($paket_wisata->foto5)
+                        <p>Previous File: <a
+                            href="{{ asset('/storage/foto5/' . $paket_wisata->foto5) }}"
+                            target="_blank">{{ $paket_wisata->foto5 }}</a></p>
+                            @endif
+                            <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png</small>
+                        <input type="file" class="form-control" id="foto5" enctype="multipart/form-data" name="foto5" onchange="validateFile(this, 'fileError5');">
+                        <div class="invalid-feedback" id="fileError5" style="display: none;">Tipe file tidak valid. Harap unggah file dengan ekstensi yang diizinkan.</div>
+                        @error('foto5') <span class="invalid" role="alert">{{$message}}</span>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Simpan</button>
-                    <a href="{{ route('paket_wisata.index') }}" class="btn btn-default">
+                    <a href="{{ route('paket_wisata.index') }}" class="btn btn-danger">
                         Batal
                     </a>
                 </div>
@@ -130,74 +134,26 @@
     @stop
     @push('js')
     <script>
-    function previewImage() {
-        const foto = document.querySelector('#foto1');
-        const imgPreview = document.querySelector('.img-preview');
-
-        imgPreview.style.display = 'block';
-
-        const ofReader = new FileReader();
-        ofReader.readAsDataURL(foto.files[0]);
-
-        ofReader.onload = function(oFREvent) {
-            imgPreview.src = oFREvent.target.result;
+        function validateFile(input, errorElementId) {
+            const allowedExtensions = ['.jpeg', '.jpg', '.png'];
+            const fileInput = input.files[0];
+            const fileErrorElement = document.getElementById(errorElementId);
+    
+            if (fileInput) {
+                const fileName = fileInput.name;
+                const fileExtension = '.' + fileName.split('.').pop().toLowerCase();
+    
+                if (!allowedExtensions.includes(fileExtension)) {
+                    fileErrorElement.style.display = 'block';
+                    input.classList.add('is-invalid');
+                    input.value = ''; // Clear the input
+                } else {
+                    fileErrorElement.style.display = 'none';
+                    input.classList.remove('is-invalid');
+                }
+            }
         }
-    }
-
-    function previewImage2() {
-        const foto = document.querySelector('#foto2');
-        const imgPreview = document.querySelector('.img-preview2');
-
-        imgPreview.style.display = 'block';
-
-        const ofReader = new FileReader();
-        ofReader.readAsDataURL(foto.files[0]);
-
-        ofReader.onload = function(oFREvent) {
-            imgPreview.src = oFREvent.target.result;
-        }
-    }
-
-    function previewImage3() {
-        const foto = document.querySelector('#foto3');
-        const imgPreview = document.querySelector('.img-preview3');
-
-        imgPreview.style.display = 'block';
-
-        const ofReader = new FileReader();
-        ofReader.readAsDataURL(foto.files[0]);
-
-        ofReader.onload = function(oFREvent) {
-            imgPreview.src = oFREvent.target.result;
-        }
-    }
-
-    function previewImage4() {
-        const foto = document.querySelector('#foto4');
-        const imgPreview = document.querySelector('.img-preview4');
-
-        imgPreview.style.display = 'block';
-
-        const ofReader = new FileReader();
-        ofReader.readAsDataURL(foto.files[0]);
-
-        ofReader.onload = function(oFREvent) {
-            imgPreview.src = oFREvent.target.result;
-        }
-    }
-
-    function previewImage5() {
-        const foto = document.querySelector('#foto5');
-        const imgPreview = document.querySelector('.img-preview5');
-
-        imgPreview.style.display = 'block';
-
-        const ofReader = new FileReader();
-        ofReader.readAsDataURL(foto.files[0]);
-
-        ofReader.onload = function(oFREvent) {
-            imgPreview.src = oFREvent.target.result;
-        }
-    }
     </script>
+    
+
     @endpush

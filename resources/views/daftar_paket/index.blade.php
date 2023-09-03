@@ -15,7 +15,6 @@
                         <tr style="background-color:#6495ED">
                             <th>No.</th>
                             <th>Nama Paket</th>
-                            <th>ID Paket Wisata</th>
                             <th>Jumlah Peserta</th>
                             <th>Harga Paket</th>
                             <th>Opsi</th>
@@ -24,11 +23,10 @@
                     <tbody>
                         @foreach($daftar_paket as $key => $dpaket)
                         <tr>
-                            <td>{{$key+1}}</td>
-                            <td>{{$dpaket->nama_paket}}</td>
-                            <td id={{$key+1}}>{{$dpaket->fpaket_wisata->id}}</td>
-                            <td>{{$dpaket->jumlah_peserta}}</td>
-                            <td>{{$dpaket->harga_paket}}</td>
+                            <td id={{$key+1}}>{{$key+1}}</td>
+                            <td id={{$key+1}}>{{$dpaket->fpaket_wisata->nama_paket}}</td>
+                            <td id={{$key+1}}>{{$dpaket->jumlah_peserta}}</td>
+                            <td id={{$key+1}}>{{$dpaket->harga_paket}}</td>
                             <td>
                                 <a href="{{route('daftar_paket.edit', $dpaket)}}"
                                     class="btn btn-primary btn-xs">Edit</a>
@@ -63,3 +61,4 @@ function notificationBeforeDelete(event, el) {
     }
 }
 </script>
+@endpush
