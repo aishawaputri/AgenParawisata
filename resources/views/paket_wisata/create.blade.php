@@ -18,22 +18,16 @@
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi</label>
-                        <input type="text" class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi"
-                            placeholder="Deskripsi Paket" name="deskripsi" value="{{old('deskripsi')}}">
+                        <textarea rows="4" class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi"
+                            placeholder="Deskripsi Paket" name="deskripsi" value="{{old('deskripsi')}}"></textarea>
                         @error('deskripsi') <span class="textdanger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="fasilitas">Fasilitas</label>
-                        <input type="text" class="form-control @error('fasilitas') is-invalid @enderror" id="fasilitas"
-                            placeholder="Fasilitas Paket" name="fasilitas" value="{{old('fasilitas')}}">
+                        <textarea rows="4" class="form-control @error('fasilitas') is-invalid @enderror" id="fasilitas"
+                            placeholder="Fasilitas Paket" name="fasilitas" value="{{old('fasilitas')}}"></textarea>
                         @error('fasilitas') <span class="textdanger">{{$message}}</span> @enderror
                     </div>
-                    <!-- <div class="form-group">
-                    <label for="itinerary">Itinerary</label>
-                        <input type="text" class="form-control @error('itinerary') is-invalid @enderror" 
-                        id="itinerary" placeholder=" Itinerary" name="itinerary" value="{{old('itinerary')}}">
-                        @error('itinerary') <span class="textdanger">{{$message}}</span> @enderror
-                    </div> -->
                     <div class="form-group">
                         <label for="itinerary">Itinerary</label>
                         <textarea rows="5" class="form-control @error('itinerary') is-invalid @enderror" id="itinerary"
@@ -49,6 +43,7 @@
                     <div class="form-group">
                         <label for="foto1" class="form-label">Foto 1</label>
                         <img class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                        <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png</small>
                         <input class="form-control @error('foto1') is-invalid @enderror" type="file" id="foto1"
                             name="foto1" onchange="previewImage()">
                         @error('foto1') <span class="textdanger">{{$message}}</span> @enderror
@@ -56,6 +51,7 @@
                     <div class="form-group">
                         <label for="foto2" class="form-label">Foto 2</label>
                         <img class="img-preview2 img-fluid mb-3 col-sm-5 d-block">
+                        <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png</small>
                         <input class="form-control @error('foto2') is-invalid @enderror" type="file" id="foto2"
                             name="foto2" onchange="previewImage2()">
                         @error('foto2') <span class="textdanger">{{$message}}</span> @enderror
@@ -63,6 +59,7 @@
                     <div class="form-group">
                         <label for="foto3" class="form-label">Foto 3</label>
                         <img class="img-preview3 img-fluid mb-3 col-sm-5 d-block">
+                        <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png</small>
                         <input class="form-control @error('foto3') is-invalid @enderror" type="file" id="foto3"
                             name="foto3" onchange="previewImage3()">
                         @error('foto3') <span class="textdanger">{{$message}}</span> @enderror
@@ -70,6 +67,7 @@
                     <div class="form-group">
                         <label for="foto4" class="form-label">Foto 4</label>
                         <img class="img-preview4 img-fluid mb-3 col-sm-5 d-block">
+                        <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png</small>
                         <input class="form-control @error('foto4') is-invalid @enderror" type="file" id="foto4"
                             name="foto4" onchange="previewImage4()">
                         @error('foto4') <span class="textdanger">{{$message}}</span> @enderror
@@ -77,6 +75,7 @@
                     <div class="form-group">
                         <label for="foto5" class="form-label">Foto 5</label>
                         <img class="img-preview5 img-fluid mb-3 col-sm-5 d-block">
+                        <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png</small>
                         <input class="form-control @error('foto5') is-invalid @enderror" type="file" id="foto5"
                             name="foto5" onchange="previewImage5()">
                         @error('foto5') <span class="textdanger">{{$message}}</span> @enderror

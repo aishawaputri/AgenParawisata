@@ -10,7 +10,6 @@ class DaftarPaket extends Model
     use HasFactory;
     protected $table = 'daftar_paket';
     protected $fillable = [
-    'nama_paket',
     'id_paket_wisata',
     'jumlah_peserta',
     'harga_paket'

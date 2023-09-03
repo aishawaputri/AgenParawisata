@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PaketWisata extends Model
 {
     use HasFactory;
+    protected  $primaryKey = 'id';
     protected $table = 'paket_wisata';
     protected $fillable =[
         'nama_paket',
@@ -19,7 +20,8 @@ class PaketWisata extends Model
         'foto2',
         'foto3',
         'foto4',
-        'foto5'
+        'foto5',
+        'status'
     ];
     
 }

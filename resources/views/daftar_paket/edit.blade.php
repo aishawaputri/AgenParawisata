@@ -11,23 +11,15 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                    
                     <div class="form-group">
-                        <label for="nama_paket">Nama Paket</label>
-                        <input type="text" class="form-control
-@error('nama_paket') is-invalid @enderror" id="nama_paket" placeholder="Masukkan Nama Paket" name="nama_paket"
-                            value="{{$daftar_paket->nama_paket ?? old('nama_paket') }}">
-                        @error('nama_paket')
-                        <span class="textdanger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="id_paket_wisata">ID Paket Wisata</label>
+                        <label for="id_paket_wisata">Nama Paket</label>
                         <div class="input-group">
                             <input type="hidden" name="id_paket_wisata" id="id_paket_wisata"
                                 value="{{$daftar_paket->fpaket_wisata->id ??old('id_paket_wisata')}}">
-                            <input type="text" class="form-control
-@error('name') is-invalid @enderror" placeholder="ID Paket Wisata" id="name" name="name"
-                                value="{{$daftar_paket->fpaket_wisata->name ?? old('name')}}" aria-label=" ID User"
+                            <input type="text" class="form-control @error('nama_paket') is-invalid @enderror" 
+                                placeholder="Pilih Nama Paket" id="name" name="name"
+                                value="{{$daftar_paket->fpaket_wisata->nama_paket ?? old('name')}}" aria-label=" ID User"
                                 ariadescribedby="cari" readonly>
                             <button class="btn btn-warning" type="button" data-bs-toggle="modal" id="cari"
                                 data-bs-target="#staticBackdrop"></i>
@@ -55,7 +47,7 @@
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Simpan</button>
-                    <a href="{{ route('daftar_paket.index') }}" class="btn btn-default">
+                    <a href="{{ route('daftar_paket.index') }}" class="btn btn-danger">
                         Batal
                     </a>
                 </div>
@@ -75,23 +67,16 @@
                     <table class="table table-hover table-bordered tablestripped" id="example2">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Nama Paket</th>
                                 <th>Deskripsi</th>
-                                <th>Fasilitas</th>
-                                <th>Itinerary</th>
-                                <th>Diskon</th>
                                 <th>Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($paket_wisata as $key => $pwisata)
                             <tr>
-                                <td>{{$key+1}}</td>
                                 <td>{{$pwisata->nama_paket}}</td>
                                 <td>{{$pwisata->deskripsi}}</td>
-                                <td>{{$pwisata->fasilitas}}</td>
-                                <td>{{$pwisata->itinerary}}</td>
                                 <td>{{$pwisata->diskon}}</td>
                                 <td>
                                     <button type="button" class="btn btn-primary btn-xs"

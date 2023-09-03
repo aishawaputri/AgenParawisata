@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\DaftarPaket;
 use App\Models\Karyawan;
+use App\Models\PaketWisata;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -25,7 +27,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'Operator',
-            'email' => 'operator@perator.com',
+            'email' => 'operator@operator.com',
             'password' => bcrypt('12345678'),
             'level' => 'operator',
             'aktif' => '1',
@@ -52,6 +54,8 @@ class DatabaseSeeder extends Seeder
 
         User::factory(10)->create();
         Karyawan::factory(10)->create();
+        PaketWisata::factory(15)->create();
+        DaftarPaket::factory(10)->create();
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

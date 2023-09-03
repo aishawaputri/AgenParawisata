@@ -22,7 +22,8 @@ return new class extends Migration
             $table->text('foto2');
             $table->text('foto3');
             $table->text('foto4');
-            $table->text('foto5');          
+            $table->text('foto5');      
+            $table->enum('status', ['1','0'])->default('0');    
             $table->timestamps();
         });
     }
