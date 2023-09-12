@@ -11,13 +11,16 @@ class Pelanggan extends Model
 
     protected $table = 'pelanggan';
     protected $fillable = [ 
-        'nama_lengkap',
+        'id_user',
         'no_hp',
         'alamat',
-        'foto',
-        'id_user'
+        'foto_pelanggan',
     ];
     public function fuser(){
         return $this->belongsTo(User::class, 'id_user', 'id');
+    }
+
+    public function reservasi(){
+        return $this->hasMany(Reservasi::class, 'id', 'id_pelanggan');
     }
 }

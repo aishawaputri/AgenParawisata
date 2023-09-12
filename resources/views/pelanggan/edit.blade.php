@@ -4,7 +4,7 @@
 <h1 class="font-weight-bold">Edit Pelanggan</h1>
 @stop
 @section('content')
-<form action="{{route('pelanggan.update', $pelanggan)}}" method="post" enctype="multipart/form-data">
+<form action="{{route('pelanggan.update', $pelanggan->id)}}" method="post" enctype="multipart/form-data">
     @method('PUT')
     @csrf
     <div class="row">
@@ -12,13 +12,11 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="nama_lengkap">Nama Lengkap</label>
-                        <input type="text" class="form-control
-@error('nama_lengkap') is-invalid @enderror" id="nama_lengkap" placeholder="Masukkan Nama Paket" name="nama_lengkap"
-                            value="{{$pelanggan->nama_lengkap ?? old('nama_lengkap') }}">
-                        @error('nama_lengkap')
-                        <span class="textdanger">{{ $message }}</span>
-                        @enderror
+                        <label for="exampleInputName">Nama lengkap</label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror"
+                            id="exampleInputName" placeholder="Nama lengkap" name="name"
+                            value="{{$pelanggan->fuser->name ?? old('name')}}">
+                        @error('name') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="no_hp">No Telepon</label>
@@ -32,34 +30,23 @@
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
                         <textarea rows="4" class="form-control
-@error('alamat') is-invalid @enderror" id="alamat" name="alamat">{{old('alamat')}}</textarea>
+@error('alamat') is-invalid @enderror" id="alamat" name="alamat">{{$pelanggan->alamat ?? old('alamat') }}</textarea>
                         @error('alamat') <span class="textdanger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="foto" class="form-label">Foto </label>
-                        @if($pelanggan->foto)
-                        <img src="{{ asset('storage/'. $pelanggan->foto) }}"
-                            class="img-preview img-fluid mb-3 col-sm-5 d-block" style="width: 100px;">
+                        <label for="foto_pelanggan" class="form-label">Foto </label>
+                        
+                        @if($pelanggan->foto_pelanggan)
+                        <img src="{{ asset('storage/Foto Pelanggan'. $pelanggan->foto_pelanggan) }}"
+                        class="img-preview img-fluid mb-3 col-sm-5 d-block" style="width: 100px;">
                         @else
                         <img class="img-preview img-fluid mb-3 col-sm-5 d-block">
                         @endif
-                        <input class="form-control @error('foto') is-invalid @enderror" type="file" id="foto"
-                            name="foto" value="{{$pelanggan->foto ?? old('foto')}}" onchange="previewImage()">
-                        @error('foto') <span class="textdanger">{{$message}}</span> @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="id_user">ID User</label>
-                        <div class="input-group">
-                            <input type="hidden" name="id_user" id="id_user"
-                                value="{{$pelanggan->fuser->id ??old('id_user')}}">
-                            <input type="text" class="form-control
-@error('name') is-invalid @enderror" placeholder="ID User" id="name" name="name"
-                                value="{{$pelanggan->fuser->name ?? old('name')}}" aria-label=" ID User"
-                                ariadescribedby="cari" readonly>
-                            <button class="btn btn-warning" type="button" data-bs-toggle="modal" id="cari"
-                                data-bs-target="#staticBackdrop"></i>
-                                Cari Data User</button>
-                        </div>
+                        <small class="form-text text-muted">Allow file extensions : &nbsp; .jpeg .jpg .png</small>
+                        <input class="form-control @error('foto_pelanggan') is-invalid @enderror" type="file" id="foto_pelanggan"
+                            name="foto_pelanggan" value="{{$pelanggan->foto_pelanggan ?? old('foto_pelanggan')}}" onchange="previewImage()" >
+                        <div class="invalid-feedback" id="fileError4" style="display: none;">Tipe file tidak valid. Harap unggah file dengan ekstensi yang diizinkan.</div>
+                        @error('foto_pelanggan') <span class="textdanger">{{$message}}</span> @enderror
                     </div>
                 </div>
                 <div class="card-footer">
@@ -71,55 +58,14 @@
             </div>
         </div>
     </div>
+</form>    
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bsbackdrop="static" data-bs-keyboard="false" tabindex="-1"
-        arialabelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable p-5">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Pencarian Data Users</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <table class="table table-hover table-bordered tablestripped" id="example2">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nama</th>
-                                <th>Email</th>
-                                <th>Level</th>
-                                <th>Aktif</th>
-                                <th>Opsi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($users as $key => $user)
-                            <tr>
-                                <td>{{$key+1}}</td>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->email}}</td>
-                                <td>{{$user->level}}</td>
-                                <td>{{$user->aktif}}</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary btn-xs"
-                                        onclick="pilih('{{$user->id}}', '{{$user->name}}')" data-bs-dismiss="modal">
-                                        Pilih </button>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- End Modal -->
     @stop
     @push('js')
     <script>
     function previewImage() {
-        const foto = document.querySelector('#foto');
+        const foto = document.querySelector('#foto_pelanggan');
         const imgPreview = document.querySelector('.img-preview');
 
         imgPreview.style.display = 'block';

@@ -13,18 +13,19 @@ return new class extends Migration
     {
         Schema::create('reservasi', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_pelanggan')->length('20')->unique;
-            $table->unsignedBigInteger('id_daftar_paket')->length('20')->unique;
+            $table->unsignedBigInteger('id_pelanggan');
+            $table->foreign('id_pelanggan')->references('id')->on('pelanggan')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('id_daftar_paket');
+            $table->foreign('id_daftar_paket')->references('id')->on('daftar_paket')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('nama_paket');
             $table->dateTime('tgl_reservasi_wisata');
-            $table->integer('harga')->length('11');
-            $table->integer('jumlah_peserta')->length('11');
-            $table->decimal('diskon', 10,0);
+            $table->integer('jumlah_peserta');
+            $table->decimal('harga_paket');
+            $table->decimal('diskon');
             $table->float('nilai_diskon');
             $table->bigInteger('total_bayar')->length(20);
-            $table->text('file_bukti_tf');
-            $table->enum('status-reservasi_wisata',['pesan', 'dibayar', 'selesai']);
-            $table->foreign('id_daftar_paket')->references('id')->on('daftar_paket')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('id_pelanggan')->references('id')->on('pelanggan')->onDelete('cascade')->onUpdate('cascade');
+            $table->text('file_bukti_tf')->nullable();
+            $table->enum('status_reservasi_wisata',['0', '1',]);
             $table->timestamps();
         });
     }

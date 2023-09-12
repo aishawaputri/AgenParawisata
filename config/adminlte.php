@@ -318,9 +318,15 @@ return [
                 ],
             [
                 'text' => 'Karyawan',
-                'url' => '/karyawan',
+                'url' => '/karyawan',   
                 'icon' => 'fa fa-users',
                 'can' => 'admin-only',
+            ], 
+            [
+                'text' => 'Pelanggan',
+                'url' => '/pelanggan',
+                'icon' => 'fa fa-users',
+                'can' => 'admin_only',
             ], 
         [
             'header' => 'PENGATURAN OPERATOR',
@@ -344,9 +350,15 @@ return [
                 'icon' => 'fa fa-calendar-plus',
                 'can' => 'operator-only',
         ], 
-        [
-            'header' => 'AKUN PELANGGAN',
-            'can' => 'pelanggan-only'
+        // [
+        //     'header' => 'AKUN PELANGGAN',
+        //     'can' => 'pelanggan-only'
+        //     ],
+            [
+                'text' => 'Profile',
+                'url' => '/profil_pelanggan',
+                'icon' => 'fa fa-user-circle',
+                'can' => 'pelanggan-only',
             ],
             [
                 'text' => 'Reservasi',
@@ -354,12 +366,6 @@ return [
                 'icon' => 'fa fa-calendar-plus',
                 'can' => 'pelanggan-only',
             ], 
-            [
-                'text' => 'Profile',
-                'url' => '/profil_pelanggan',
-                'icon' => 'fa fa-user-circle',
-                'can' => 'pelanggan-only',
-            ],
         [
             'header' => 'GENERATE LAPORAN',
             'can' => 'pemilik-only'

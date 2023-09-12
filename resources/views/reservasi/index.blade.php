@@ -14,8 +14,7 @@
                     <thead>
                         <tr style="background-color:#6495ED">
                             <th>No.</th>
-                            <th>ID Pelanggan</th>
-                            <th>ID Daftar Paket</th>
+                            <th>Nama Paket</th>
                             <th>Tanggal Reservasi</th>
                             <th>Harga</th>
                             <th>Jumlah Peserta</th>
@@ -30,34 +29,28 @@
                     <tbody>
                         @foreach($reservasi as $key => $rv)
                         <tr>
-                            <td>{{$key+1}}</td>
-                            <td id={{$key+1}}>{{$rv->fpelanggan->id}}</td>
-                            <td id={{$key+1}}>{{$rv->fdpaket->id}}</td>
-                            <td>{{$rv->tgl_reservasi_wisata}}
-                            </td>
-                            <td>{{$rv->harga}}</td>
-                            <td>{{$rv->jumlah_peserta}}</td>
-                            <td>{{$rv->diskon}}</td>
-                            <td>{{$rv->nilai_diskon}}</td>
-                            <td>{{$rv->total_bayar}}</td>
-                            <td>
-                                <img src="storage/{{$rv->file_bukti_tf}}" alt="{{$rv->file_bukti_tf}} tidak tampil"
+                            <td id={{$key+1}}>{{$key+1}}</td>
+                            <td id={{$key+1}}>{{$rv->dpaket->nama_paket}}</td>
+                            <td id={{$key+1}}>{{$rv->tgl_reservasi_wisata}}</td>
+                            <td id={{$key+1}}>{{$rv->dpaket->harga}}</td>
+                            <td id={{$key+1}}>{{$rv->jumlah_peserta}}</td>
+                            <td id={{$key+1}}>{{$rv->diskon}}</td>
+                            <td id={{$key+1}}>{{$rv->nilai_diskon}}</td>
+                            <td id={{$key+1}}>{{$rv->total_bayar}}</td>
+                            <td id={{$key+1}}>
+                                <img src="storage/Bukti Transfer{{$rv->file_bukti_tf}}" alt="{{$rv->file_bukti_tf}} tidak tampil"
                                     class="img-thumbnail">
                             </td>
-                            <td>
-                                @switch($rv->status_reservasi_wisata)
-                                @case('Pesan')
+                            <td id={{$key+1}}>
+                                @if ($rv->file_bukti_tf === null)
                                 Pesan
-                                @break
-                                @case('Dibayar')
+                                @elseif ($rv->status_reservasi_wisata === '1')
                                 Dibayar
-                                @break
-                                @case('Selesai')
+                                @else
                                 Selesai
-                                @break
-                                @endswitch
+                                @endif
                             </td>
-                            <td>
+                            <td id={{$key+1}}>
                                 <a href="{{route('reservasi.edit', $rv)}}" class="btn btn-primary btn-xs">Edit</a>
                                 <a href="{{route('reservasi.destroy', $rv)}}"
                                     onclick="notificationBeforeDelete(event, this)"
@@ -90,3 +83,4 @@ function notificationBeforeDelete(event, el) {
     }
 }
 </script>
+@endpush

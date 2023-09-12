@@ -19,6 +19,9 @@ class DaftarPaket extends Model
         return $this->belongsTo(PaketWisata::class, 'id_paket_wisata', 'id');
     }
     
+    public function reservasi(){
+        return $this->hasMany(Reservasi::class, 'id', 'id_daftar_paket');
+    }
    
 
 }

@@ -9,12 +9,19 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfilPelangganController extends Controller
 {
-    public function index(){
-        //Menampilkan Profil pelanggan
-        $pelanggan = Pelanggan::where('nama_lengkap', Auth::user()->name)->first();
+    public function profile()
+    {
+        // Mengambil data 'Pelanggan' yang terkait dengan pengguna yang sedang masuk
+        $pelanggan = Pelanggan::where('id_user', Auth::user()->id)->first();
+    
+        if (!$pelanggan) {
+            // Handle jika data 'Pelanggan' tidak ditemukan
+            return redirect()->route('home')->with('error', 'Data profil pelanggan tidak ditemukan.');
+        }
+    
         return view('profil_pelanggan.index', ['pelanggan' => $pelanggan]);
-        } 
-
+    }
+    
         public function edit($id)
  {
         //Menampilkan Form Edit pelanggan
