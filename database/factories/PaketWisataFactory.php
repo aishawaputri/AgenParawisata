@@ -20,7 +20,7 @@ class PaketWisataFactory extends Factory
             'deskripsi' => $this->faker->paragraph(),
             'fasilitas' => $this->faker->sentence(),
             'itinerary' => $this->faker->paragraph(),
-            'diskon' => $this->faker->randomNumber(2),
+            'diskon' => $this->faker->randomFloat(2, 0, 1) , // Menghasilkan angka desimal antara 0 dan 1, kemudian dikalikan dengan 100 untuk mengonversi ke persentase, dan mengubahnya menjadi format dengan dua angka di belakang koma
             'foto1' => 'path_to_photo1.jpg',
             'foto2' => 'path_to_photo2.jpg',
             'foto3' => 'path_to_photo3.jpg',

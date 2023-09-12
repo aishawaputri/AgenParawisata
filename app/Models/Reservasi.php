@@ -12,20 +12,21 @@ class Reservasi extends Model
     protected $fillable = [ 
         'id_pelanggan',
         'id_daftar_paket',
+        'nama_paket',
         'tgl_reservasi_wisata',
-        'harga',
         'jumlah_peserta',
+        'harga_paket',
         'diskon',
         'nilai_diskon',
         'total_bayar',
         'file_bukti_tf',
-        'status_rservasi_wisata'
+        // 'status_rservasi_wisata'
     ];
-    public function fpelanggan(){
-        return $this->belongsTo(Pelanggan::class, 'id_pelanggan', 'id');
-}
-    public function fdpaket(){
+    public function dpaket(){
         return $this->belongsTo(DaftarPaket::class, 'id_daftar_paket', 'id');
 }
+    public function pelanggan(){
+        return $this->belongsTo(Pelanggan::class,  'id_pelanggan');
+    }
     
 }

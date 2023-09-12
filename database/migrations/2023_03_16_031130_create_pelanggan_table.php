@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('pelanggan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_lengkap', 255);
-            $table->string('no_hp', 15);
-            $table->text('alamat'); 
-            $table->text('foto');
             $table->unsignedBigInteger('id_user')->length(20);
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('no_hp', 15);
+            $table->text('alamat'); 
+            $table->text('foto_pelanggan');
             $table->timestamps();
         });
     }

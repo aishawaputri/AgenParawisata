@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('paket_wisata', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_paket', 255)->unique();
+            $table->string('nama_paket', 255);
             $table->text('deskripsi');
             $table->string('fasilitas', 255);
             $table->text('itinerary');
-            $table->decimal('diskon', 10,0);
+            $table->decimal('diskon', 10, 2);
             $table->text('foto1');
             $table->text('foto2');
             $table->text('foto3');

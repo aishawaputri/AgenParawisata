@@ -23,5 +23,9 @@ class PaketWisata extends Model
         'foto5',
         'status'
     ];
+
+    public function reservasi(){
+        return $this->hasMany(Reservasi::class, 'id', 'id_paket_wisata');
+    }
     
 }

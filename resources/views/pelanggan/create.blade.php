@@ -11,11 +11,16 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="nama_lengkap">Nama Lengkap</label>
-                        <input type="text" class="form-control @error('nama_lengkap') is-invalid @enderror"
-                            id="nama_lengkap" placeholder="Masukan Nama Lengkap" name="nama_lengkap"
-                            value="{{old('nama_lengkap')}}">
-                        @error('nama_lengkap') <span class="textdanger">{{$message}}</span> @enderror
+                        <label for="id_user">Nama Lengkap</label>
+                        <div class="input-group">
+                            <input type="hidden" name="id_user" id="id_user" value="{{old('id_user')}}">
+                            <input type="text" class="form-control
+                    @error('name') is-invalid @enderror" placeholder="ID User" id="name" name="name"
+                                value="{{old('name')}}" arialabel="ID User" aria-describedby="cari" readonly>
+                            <button class="btn btn-warning" type="button" data-bs-toggle="modal" id="cari"
+                                data-bs-target="#staticBackdrop"></i>
+                                Cari Data User</button>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="no_hp">No Telepon</label>
@@ -30,24 +35,13 @@
                         @error('alamat') <span class="textdanger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="foto" class="form-label">Foto</label>
+                        <label for="foto_pelanggan" class="form-label">Foto</label>
                         <img class="img-preview img-fluid mb-3 col-sm-5 d-block">
-                        <input class="form-control @error('foto') is-invalid @enderror" type="file" id="foto"
-                            name="foto" onchange="previewImage()">
-                        @error('foto') <span class="textdanger">{{$message}}</span> @enderror
+                        <input class="form-control @error('foto_pelanggan') is-invalid @enderror" type="file" id="foto_pelanggan"
+                            name="foto_pelanggan" onchange="previewImage()">
+                        @error('foto_pelanggan') <span class="textdanger">{{$message}}</span> @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="id_user">ID User</label>
-                        <div class="input-group">
-                            <input type="hidden" name="id_user" id="id_user" value="{{old('id_user')}}">
-                            <input type="text" class="form-control
-                    @error('name') is-invalid @enderror" placeholder="ID User" id="name" name="name"
-                                value="{{old('name')}}" arialabel="ID User" aria-describedby="cari" readonly>
-                            <button class="btn btn-warning" type="button" data-bs-toggle="modal" id="cari"
-                                data-bs-target="#staticBackdrop"></i>
-                                Cari Data User</button>
-                        </div>
-                    </div>
+                  
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Simpan</button>
@@ -126,9 +120,9 @@
     });
     //Fungsi pilih untuk memilih data bidang studi dan mengirimkan data Bidang Studi dari Modal ke form tambah
 
-    function pilih(id, bstud) {
+    function pilih(id, name) {
         document.getElementById('id_user').value = id
-        document.getElementById('name').value = bstud
+        document.getElementById('name').value = name
     }
     </script>
     @endpush

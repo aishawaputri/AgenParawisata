@@ -28,6 +28,17 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function pelanggan(){
+        return $this->hasOne(Pelanggan::class,  'id_user');
+    }
+
+    public function karyawan(){
+        return $this->hasMany(Karyawan::class, 'id', 'id_user');
+    }
+
+    public function reservasi(){
+        return $this->hasMany(Reservasi::class, 'id', 'id_user');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

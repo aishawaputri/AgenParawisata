@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\DaftarPaket;
 use App\Models\Karyawan;
 use App\Models\PaketWisata;
+use App\Models\Pelanggan;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -52,10 +53,18 @@ class DatabaseSeeder extends Seeder
             'remember_token' => ''
         ]);
 
-        User::factory(10)->create();
+        Pelanggan::create([
+            'id_user' => '3',
+            'no_hp' => '085714439204',
+            'alamat' => 'Cibinong no.17 jalan perhubungan asri bogor ',
+            'foto_pelanggan' => asset('storage/Foto/pp_kosong.jpg'),
+        ]);
+
+        User::factory(50)->create();
         Karyawan::factory(10)->create();
         PaketWisata::factory(15)->create();
         DaftarPaket::factory(10)->create();
+        Pelanggan::factory(15)->create();
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

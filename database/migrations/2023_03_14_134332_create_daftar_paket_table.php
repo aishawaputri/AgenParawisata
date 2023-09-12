@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('daftar_paket', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_paket_wisata')->lenght(20)->unique();
+            $table->unsignedBigInteger('id_paket_wisata')->lenght(20);
             $table->integer('jumlah_peserta');
             $table->decimal('harga_paket', 10, 3);
             $table->foreign('id_paket_wisata')->references('id')->on('paket_wisata')->onDelete('cascade')->onUpdate('cascade');
