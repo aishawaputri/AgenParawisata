@@ -32,7 +32,7 @@
                     <div class="form-group">
                         <label for="jumlah_peserta">Jumlah Peserta</label>
                         <input type="number " class="form-control @error('jumlah_peserta') is-invalid @enderror" 
-                            id="jumlah_peserta"  name="jumlah_peserta" value="{{old('jumlah_peserta')}}">
+                            id="jumlah_peserta"  name="jumlah_peserta" value="{{old('jumlah_peserta')}}" readonly>
                         @error('jumlah_peserta') <span class="textdanger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
@@ -47,11 +47,11 @@
                             id="diskon" name="diskon" value="{{old('diskon')}}"readonly>
                         @error('diskon') <span class="textdanger">{{$message}}</span> @enderror
                     </div>
-
+ 
                     <div class="form-group">
                         <label for="nilai_diskon">Nilai Diskon</label>
                         <input type="text" class="form-control @error('nilai_diskon') is-invalid @enderror" 
-                            id="nilai_diskon"  name="nilai_diskon" value="{{old('nilai_diskon')}}">
+                            id="nilai_diskon"  name="nilai_diskon" value="{{old('nilai_diskon')}}" readonly>
                         @error('nilai_diskon') <span class="textdanger">{{$message}}</span> @enderror
                     </div>
 
@@ -59,7 +59,7 @@
                         <label for="total_bayar">Total Bayar</label>
                         <input type="text" class="form-control
 @error('total_bayar') is-invalid @enderror" id="total_bayar" usaceholder="Masukan Total Bayar" name="total_bayar"
-                            value="{{old('total_bayar')}}">
+                            value="{{old('total_bayar')}}" readonly>
                         @error('total_bayar') <span class="textdanger">{{$message}}</span> @enderror
                     </div>
 
@@ -68,7 +68,7 @@
                         <img class="img-preview img-fluid mb-3 col-sm-5 d-block">
                         <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png</small>
                         <input class="form-control @error('file_bukti_tf') is-invalid @enderror" type="file"
-                            id="file_bukti_tf" name="file_bukti_tf" onchange="previewImage()">
+                            id="file_bukti_tf" name="file_bukti_tf" enctype="multipart/form-data" onchange="previewImage()">
                         @error('file_bukti_tf') <span class="textdanger">{{$message}}</span> @enderror
                     </div>
                 </div>
@@ -144,20 +144,12 @@
 
         document.getElementById('id_daftar_paket').value = id;
         document.getElementById('nama_paket').value = nama_paket;
-        document.getElementById('harga_paket').value = harga_paket.toLocaleString('en-US', {
-        minimumFractionDigits: 3, // 3 digit di belakang koma
-        maximumFractionDigits: 3,
-    });
+        document.getElementById('harga_paket').value = harga_paket
+
     document.getElementById('diskon').value = diskon;
     document.getElementById('jumlah_peserta').value = jumlah_peserta;
-    document.getElementById('nilai_diskon').value = nilaiDiskon.toLocaleString('en-US', {
-        minimumFractionDigits: 3, // 2 digit di belakang koma
-        maximumFractionDigits: 3,
-    });
-    document.getElementById('total_bayar').value = totalBayar.toLocaleString('en-US', {
-        minimumFractionDigits: 3, // 2 digit di belakang koma
-        maximumFractionDigits: 3,
-    });
+    document.getElementById('nilai_diskon').value = nilaiDiskon
+    document.getElementById('total_bayar').value = totalBayar
 
     }
 

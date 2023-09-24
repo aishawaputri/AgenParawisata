@@ -60,6 +60,22 @@ class DatabaseSeeder extends Seeder
             'foto_pelanggan' => asset('storage/Foto/pp_kosong.jpg'),
         ]);
 
+        User::create([
+            'name' => 'pelanggan2',
+            'email' => 'pelanggan2@pelanggan.com',
+            'password' => bcrypt('12345678'),
+            'level' => 'pelanggan',
+            'aktif' => '1',
+            'remember_token' => ''
+        ]);
+        
+        Pelanggan::create([
+            'id_user' => '4',
+            'no_hp' => '089698691224',
+            'alamat' => 'Cibinong no.17 jalan perhubungan asri bogor ',
+            'foto_pelanggan' => asset('storage/Foto Pelanggan/pp_kosong.jpg/'),
+        ]);
+
         User::factory(50)->create();
         Karyawan::factory(10)->create();
         PaketWisata::factory(15)->create();

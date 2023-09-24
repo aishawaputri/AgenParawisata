@@ -12,7 +12,6 @@ class Reservasi extends Model
     protected $fillable = [ 
         'id_pelanggan',
         'id_daftar_paket',
-        'nama_paket',
         'tgl_reservasi_wisata',
         'jumlah_peserta',
         'harga_paket',

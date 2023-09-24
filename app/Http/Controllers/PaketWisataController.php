@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PaketWisata;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PaketWisataController extends Controller
 {
@@ -35,35 +36,67 @@ class PaketWisataController extends Controller
             'foto4' => 'mimes:pdf,doc,docx,png,jpg,jpeg',
             'foto5' => 'mimes:pdf,doc,docx,png,jpg,jpeg' 
         ]);
-            $array = $request->only([
-            'nama_paket',
-            'deskripsi',
-            'fasilitas',
-            'itinerary',
-            'diskon',
-            'foto1'.
-            'foto2',
-            'foto3',
-            'foto4',
-            'foto5'
-            ]);
-            $array['foto1'] = $request->file('foto1')->store('Foto 1');
-            $array['foto2'] = $request->file('foto2')->store('Foto 2');
-            $array['foto3'] = $request->file('foto3')->store('Foto 3');
-            $array['foto4'] = $request->file('foto4')->store('Foto 4');
-            $array['foto5'] = $request->file('foto4')->store('Foto 5');
-            $tambah=PaketWisata::create($array);
-            if($tambah) $request->file('foto1')->store('Foto 1');
-            return redirect()->route('paket_wisata.index')->with('success_message', 'Berhasil menambah paket wisata baru');
-            if($tambah) $request->file('foto2')->store('Foto 2');
-            return redirect()->route('paket_wisata.index')->with('success_message', 'Berhasil menambah paket wisata baru');
-            if($tambah) $request->file('foto3')->store('Foto 3');  
-            return redirect()->route('paket_wisata.index')->with('success_message', 'Berhasil menambah paket wisata baru');
-            if($tambah) $request->file('foto4')->store('Foto 4');
-            return redirect()->route('paket_wisata.index')->with('success_message', 'Berhasil menambah paket wisata baru');
-            if($tambah) $request->file('foto5')->store('Foto 5');
-            return redirect()->route('paket_wisata.index')->with('success_message', 'Berhasil menambah paket wisata baru');
-    }
+        $paket_wisata = new PaketWisata();
+
+        $paket_wisata->nama_paket = $request->nama_paket;
+        $paket_wisata->deskripsi = $request->deskripsi;
+        $paket_wisata->fasilitas = $request->fasilitas;
+        $paket_wisata->itinerary = $request->itinerary;
+        $paket_wisata->diskon = $request->diskon;
+
+        if ($request->hasFile('foto1')) {
+            // Upload dan simpan file jika ada
+            $foto1 = $request->file('foto1');
+            $fileFoto1 = Str::random(20) . '.' . $foto1->getClientOriginalExtension();
+            $foto1->storeAs('Foto 1', $fileFoto1, 'public');
+            $paket_wisata->foto1 = $fileFoto1;
+        } else {
+            $paket_wisata->foto1 = null; 
+        }
+
+        if ($request->hasFile('foto2')) {
+            
+            $foto2 = $request->file('foto2');
+            $fileFoto2 = Str::random(20) . '.' . $foto2->getClientOriginalExtension();
+            $foto2->storeAs('Foto 2', $fileFoto2, 'public');
+            $paket_wisata->foto2 = $fileFoto2;
+        } else {
+            $paket_wisata->foto2 = null; 
+        }
+
+         if ($request->hasFile('foto3')) {
+            
+            $foto3 = $request->file('foto3');
+            $filefoto3 = Str::random(20) . '.' . $foto3->getClientOriginalExtension();
+            $foto3->storeAs('Foto 3', $filefoto3, 'public');
+            $paket_wisata->foto3 = $filefoto3;
+        } else {
+            $paket_wisata->foto3 = null; 
+        }
+
+         if ($request->hasFile('foto4')) {
+            
+            $foto4 = $request->file('foto4');
+            $filefoto4 = Str::random(20) . '.' . $foto4->getClientOriginalExtension();
+            $foto4->storeAs('Foto 4', $filefoto4, 'public');
+            $paket_wisata->foto4 = $filefoto4;
+        } else {
+            $paket_wisata->foto4 = null; 
+        }
+
+        if ($request->hasFile('foto5')) {
+            
+            $foto5 = $request->file('foto5');
+            $filefoto5 = Str::random(20) . '.' . $foto5->getClientOriginalExtension();
+            $foto5->storeAs('Foto 5', $filefoto5, 'public');
+            $paket_wisata->foto5 = $filefoto5;
+        } else {
+            $paket_wisata->foto5 = null; 
+        }
+
+        $paket_wisata->save();
+        return redirect()->route('paket_wisata.index')->with('success_message', 'Berhasil menambah data Paket Wisata');
+        }    
 
     public function edit(string $id)
     {
@@ -101,22 +134,50 @@ class PaketWisataController extends Controller
         // $paket_wisata->foto1 = $request->file('foto1')->store('Foto 1');
 
         if ($request->hasFile('foto1')) {
-            // Menghapus file file_perizinan sebelumnya
             if ($paket_wisata->foto1) {
                 Storage::disk('public')->delete('foto1/'.$paket_wisata->foto1);
             }
-            
-            // Upload file file_perizinan baru
             $foto1 = $request->file('foto1');
             $namafoto1 = time().'.'.$foto1->getClientOriginalExtension();
             Storage::disk('public')->put('file_perizinan/'.$namafoto1, file_get_contents($foto1));
             $paket_wisata->foto1 = $namafoto1;
         }
-    
-       $paket_wisata->foto2 = $request->file('foto2')->store('Foto 2');
-       $paket_wisata->foto3 = $request->file('foto3')->store('Foto 3');
-       $paket_wisata->foto4 = $request->file('foto4')->store('Foto 4');
-       $paket_wisata->foto5 = $request->file('foto5')->store('Foto 5');
+        if ($request->hasFile('foto2')) {
+            if ($paket_wisata->foto2) {
+                Storage::disk('public')->delete('foto2/'.$paket_wisata->foto2);
+            }
+            $foto2 = $request->file('foto2');
+            $namafoto2 = time().'.'.$foto2->getClientOriginalExtension();
+            Storage::disk('public')->put('file_perizinan/'.$namafoto2, file_get_contents($foto2));
+            $paket_wisata->foto2 = $namafoto2;
+        }
+        if ($request->hasFile('foto3')) {
+            if ($paket_wisata->foto3) {
+                Storage::disk('public')->delete('foto3/'.$paket_wisata->foto3);
+            }
+            $foto3 = $request->file('foto3');
+            $namafoto3 = time().'.'.$foto3->getClientOriginalExtension();
+            Storage::disk('public')->put('file_perizinan/'.$namafoto3, file_get_contents($foto3));
+            $paket_wisata->foto3 = $namafoto3;
+        }
+        if ($request->hasFile('foto4')) {
+            if ($paket_wisata->foto4) {
+                Storage::disk('public')->delete('foto4/'.$paket_wisata->foto4);
+            }
+            $foto4 = $request->file('foto4');
+            $namafoto4 = time().'.'.$foto4->getClientOriginalExtension();
+            Storage::disk('public')->put('file_perizinan/'.$namafoto4, file_get_contents($foto4));
+            $paket_wisata->foto4 = $namafoto4;
+        }
+        if ($request->hasFile('foto5')) {
+            if ($paket_wisata->foto5) {
+                Storage::disk('public')->delete('foto5/'.$paket_wisata->foto5);
+            }
+            $foto5 = $request->file('foto5');
+            $namafoto5 = time().'.'.$foto5->getClientOriginalExtension();
+            Storage::disk('public')->put('file_perizinan/'.$namafoto5, file_get_contents($foto5));
+            $paket_wisata->foto5 = $namafoto5;
+        }
        $paket_wisata->save();
         return redirect()->route('paket_wisata.index')->with('success_message', 'Berhasil mengubah Paket Wisata');
     }
@@ -125,9 +186,7 @@ class PaketWisataController extends Controller
     {
         $paket_wisata = PaketWisata::find($id);
         if ($paket_wisata) {
-            $hapus = $paket_wisata->delete();
-            if ($hapus)
-                unlink("storage/" . $paket_wisata->foto1);     
+            $paket_wisata->delete();
         }
         return redirect()->route('paket_wisata.index')->with('success_message', 'Berhasil menghapus Paket Wisata');
         }
