@@ -37,23 +37,23 @@
                             <td>{{$pwisata->itinerary}}</td>
                             <td>{{$pwisata->diskon}}</td>
                             <td>
-                                <img src="storage/{{$pwisata->foto1}}" alt="{{$pwisata->foto1}} tidak tampil"
+                                <img src="storage/Foto 1/{{$pwisata->foto1}}" alt="{{$pwisata->foto1}} tidak tampil"
+                                class="img-thumbnail">
+                            </td>
+                            <td>
+                                <img src="storage/Foto 2/{{$pwisata->foto2}}" alt="{{$pwisata->foto2}} tidak tampil"
                                     class="img-thumbnail">
                             </td>
                             <td>
-                                <img src="storage/{{$pwisata->foto2}}" alt="{{$pwisata->foto2}} tidak tampil"
+                                <img src="storage/Foto 3/{{$pwisata->foto3}}" alt="{{$pwisata->foto3}} tidak tampil"
                                     class="img-thumbnail">
                             </td>
                             <td>
-                                <img src="storage/{{$pwisata->foto3}}" alt="{{$pwisata->foto3}} tidak tampil"
+                                <img src="storage/Foto 4/{{$pwisata->foto4}}" alt="{{$pwisata->foto4}} tidak tampil"
                                     class="img-thumbnail">
                             </td>
                             <td>
-                                <img src="storage/{{$pwisata->foto4}}" alt="{{$pwisata->foto4}} tidak tampil"
-                                    class="img-thumbnail">
-                            </td>
-                            <td>
-                                <img src="storage/{{$pwisata->foto5}}" alt="{{$pwisata->foto5}} tidak tampil"
+                                <img src="storage/Foto 5/{{$pwisata->foto5}}" alt="{{$pwisata->foto5}} tidak tampil"
                                     class="img-thumbnail">
                             </td>
                             <td>

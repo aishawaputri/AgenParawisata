@@ -17,15 +17,14 @@ return new class extends Migration
             $table->foreign('id_pelanggan')->references('id')->on('pelanggan')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('id_daftar_paket');
             $table->foreign('id_daftar_paket')->references('id')->on('daftar_paket')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('nama_paket');
             $table->dateTime('tgl_reservasi_wisata');
             $table->integer('jumlah_peserta');
-            $table->decimal('harga_paket');
+            $table->decimal('harga_paket', 10, 3);
             $table->decimal('diskon');
-            $table->float('nilai_diskon');
-            $table->bigInteger('total_bayar')->length(20);
+            $table->decimal('nilai_diskon', 10, 3);
+            $table->decimal('total_bayar', 10, 3);
             $table->text('file_bukti_tf')->nullable();
-            $table->enum('status_reservasi_wisata',['0', '1',]);
+            $table->enum('status_reservasi_wisata',['pesan', 'bayar', 'selesai'])->default('pesan');
             $table->timestamps();
         });
     }

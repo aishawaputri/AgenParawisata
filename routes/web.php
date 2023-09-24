@@ -41,7 +41,6 @@ Route::resource('paket_wisata', \App\Http\Controllers\PaketWisataController::cla
 Route::resource('daftar_paket', \App\Http\Controllers\DaftarPaketController::class)->middleware('auth');
 
 Route::resource('reservasi', \App\Http\Controllers\ReservasiController::class)->middleware('auth');
-
 // Route::resource('profil_pelanggan',\App\Http\Controllers\ProfilPelangganController::class)->middleware('auth'); 
 
 Route::resource('laporan', \App\Http\Controllers\LaporanController::class)->middleware('auth');

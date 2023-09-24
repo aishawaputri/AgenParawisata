@@ -58,9 +58,8 @@
                     <div class="form-group">
                         <label for="foto1">Foto 1</label>
                         @if ($paket_wisata->foto1)
-                        <p>Previous File: <a
-                            href="{{ asset('/storage/foto1/' . $paket_wisata->foto1) }}"
-                            target="_blank">{{ $paket_wisata->foto1 }}</a></p>
+                            <img class="img-preview img-fluid mb-3 col-sm-5 d-block" src="{{ asset('/storage/Foto 1/' . $paket_wisata->foto1) }}"
+                            alt="Foto 1">
                             @endif
                         <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png</small>
                         <input type="file" class="form-control" id="foto1" enctype="multipart/form-data" name="foto1" onchange="validateFile(this,  'fileError1');">
@@ -71,9 +70,8 @@
                     <div class="form-group">
                         <label for="foto2">Foto 2</label>
                         @if ($paket_wisata->foto2)
-                        <p>Previous File: <a
-                            href="{{ asset('/storage/foto2/' . $paket_wisata->foto2) }}"
-                            target="_blank">{{ $paket_wisata->foto2 }}</a></p>
+                            <img class="img-preview img-fluid mb-3 col-sm-5 d-block" src="{{ asset('/storage/Foto 2/' . $paket_wisata->foto2) }}"
+                            alt="Foto 2">
                             @endif
                         <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png</small>
                         <input type="file" class="form-control" id="foto2" enctype="multipart/form-data" name="foto2" onchange="validateFile(this, 'fileError2');">
@@ -84,10 +82,9 @@
                     <div class="form-group">
                         <label for="foto3">Foto 3</label>
                         @if ($paket_wisata->foto3)
-                        <p>Previous File: <a
-                            href="{{ asset('/storage/foto3/' . $paket_wisata->foto3) }}"
-                            target="_blank">{{ $paket_wisata->foto3 }}</a></p>
-                            @endif
+                        <img class="img-preview img-fluid mb-3 col-sm-5 d-block" src="{{ asset('/storage/Foto 3/' . $paket_wisata->foto3) }}"
+                        alt="Foto 3">
+                        @endif
                             <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png</small>
                         <input type="file" class="form-control" id="foto3" enctype="multipart/form-data" name="foto3" onchange="validateFile(this, 'fileError3');">
                         <div class="invalid-feedback" id="fileError3" style="display: none;">Tipe file tidak valid. Harap unggah file dengan ekstensi yang diizinkan.</div>
@@ -97,10 +94,9 @@
                     <div class="form-group">
                         <label for="foto4">Foto 4</label>
                         @if ($paket_wisata->foto4)
-                        <p>Previous File: <a
-                            href="{{ asset('/storage/foto4/' . $paket_wisata->foto4) }}"
-                            target="_blank">{{ $paket_wisata->foto4 }}</a></p>
-                            @endif
+                        <img class="img-preview img-fluid mb-3 col-sm-5 d-block" src="{{ asset('/storage/Foto 4/' . $paket_wisata->foto4) }}"
+                        alt="Foto 3">
+                        @endif
                             <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png</small>
                         <input type="file" class="form-control" id="foto4" enctype="multipart/form-data" name="foto4" onchange="validateFile(this, 'fileError4');">
                         <div class="invalid-feedback" id="fileError4" style="display: none;">Tipe file tidak valid. Harap unggah file dengan ekstensi yang diizinkan.</div>
@@ -110,10 +106,9 @@
                     <div class="form-group">
                         <label for="foto5">Foto 5</label>
                         @if ($paket_wisata->foto5)
-                        <p>Previous File: <a
-                            href="{{ asset('/storage/foto5/' . $paket_wisata->foto5) }}"
-                            target="_blank">{{ $paket_wisata->foto5 }}</a></p>
-                            @endif
+                        <img class="img-preview img-fluid mb-3 col-sm-5 d-block" src="{{ asset('/storage/Foto 5/' . $paket_wisata->foto5) }}"
+                        alt="Foto 3">
+                        @endif
                             <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png</small>
                         <input type="file" class="form-control" id="foto5" enctype="multipart/form-data" name="foto5" onchange="validateFile(this, 'fileError5');">
                         <div class="invalid-feedback" id="fileError5" style="display: none;">Tipe file tidak valid. Harap unggah file dengan ekstensi yang diizinkan.</div>

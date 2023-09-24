@@ -346,7 +346,7 @@ return [
             ], 
             [
                 'text' => 'Reservasi',
-                'url' => '/reservasi',
+                'url' => '/reservasiOpr',
                 'icon' => 'fa fa-calendar-plus',
                 'can' => 'operator-only',
         ], 
