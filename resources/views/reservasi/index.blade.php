@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body table-responsive">
                 <a href="{{route('reservasi.create')}}" class="btn btn-primary mb-2">Tambah <i
                         class="fas fa-plus-square"></i></a>
                 <table class="table table-hover table-bordered table-stripped" id="example2">

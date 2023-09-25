@@ -6,14 +6,13 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <a href="{{route('reservasi.create')}}" class="btn btn-primary mb-2">Tambah <i
-                        class="fas fa-plus-square"></i></a>
+        <div class="card overflow-scroll">
+            <div class="card-body pe-3">
                 <table class="table table-hover table-bordered table-stripped" id="example2">
                     <thead>
                         <tr style="background-color:#6495ED">
                             <th>No.</th>
+                            <th>Nama Pelanggan</th>
                             <th>Nama Paket</th>
                             <th>Tanggal Reservasi</th>
                             <th>Harga</th>
@@ -30,8 +29,9 @@
                         @foreach($reservasi as $key => $rv)
                         <tr>
                             <td id={{$key+1}}>{{$key+1}}</td>
+                            <td id={{$key+1}}>{{$rv->pelanggan->fuser->name}}</td>
                             <td id={{$key+1}}>{{$rv->dpaket->fpaket_wisata->nama_paket}}</td>
-                            <td id={{$key+1}}>{{date_format( new DateTime($rv->tgl_reservasi_wisata), 'd F Y')}}</td>
+                            <td id={{$key+1}}> {{date_format( new DateTime($rv->tgl_reservasi_wisata), 'd F Y')}}</td>
                             <td id={{$key+1}}>{{$rv->harga_paket}}</td>
                             <td id={{$key+1}}>{{$rv->jumlah_peserta}}</td>
                             <td id={{$key+1}}>{{number_format($rv->diskon* 100)}}%</td>
@@ -46,12 +46,12 @@
                                 @endif
                             </td>
                             <td id={{$key+1}}>
-                                @if ($rv->status_reservasi_wisata === 'pesan')
-                                Pesan
-                                @elseif ($rv->status_reservasi_wisata === 'bayar')
+                                @if ($rv->status_reservasi_wisata === 'bayar')
                                 Dibayar
-                                @else
+                                @elseif ($rv->status_reservasi_wisata === 'selesai')
                                 Selesai
+                                @elseif ($rv->status_reservasi_wisata === null)
+                                Pesan 
                                 @endif
                             </td>
                             <td id={{$key+1}}>
@@ -68,6 +68,8 @@
         </div>
     </div>
 </div>
+
+
 @stop
 @push('js')
 <form action="" id="delete-form" method="post">
@@ -75,7 +77,7 @@
     @csrf
 </form>
 <script>
-$('#example2').rvTable({
+$('#example2').DataTable({
     "responsive": true,
 });
 

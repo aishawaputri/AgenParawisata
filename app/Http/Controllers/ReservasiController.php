@@ -35,7 +35,7 @@ class ReservasiController extends Controller
     
         // Ambil data reservasi berdasarkan ID pelanggan
         $reservasi = Reservasi::where('id_pelanggan', $pelanggan->id)->get();
-                return view('reservasi.index', [
+            return view('reservasi.index', [
             'reservasi' => $reservasi,
             'daftarpaket' => DaftarPaket::all(),
         ]);
@@ -64,7 +64,7 @@ class ReservasiController extends Controller
             'nilai_diskon'=>'required',
             'total_bayar'=>'required',
             'file_bukti_tf'=>'mimes:png,jpg,jpeg',
-            // 'status_reservasi_wisata'=>'required'
+            'status_reservasi_wisata'=> null,
         ]);
 
         $id_pelanggan = Auth::user()->pelanggan->id;
@@ -100,7 +100,7 @@ class ReservasiController extends Controller
         $reservasi->diskon = $diskonDecimal ;
         $reservasi->nilai_diskon = $request->nilai_diskon;
         $reservasi->total_bayar = $request->total_bayar; // Menggunakan total bayar yang dihitung
-        // $reservasi->status_reservasi_wisata = $request->status_reservasi_wisata;
+        $reservasi->status_reservasi_wisata = null;
         $reservasi->save();
         
         return redirect()->route('reservasi.index')->with('success_message', 'Berhasil menambah data Reservasi');
@@ -124,7 +124,7 @@ class ReservasiController extends Controller
     public function update(Request $request, $id)
     {
         
-        // dd($request->id_daftar_paket);
+        // dd($request);
         $request->validate([
             'id_pelanggan' => 'required',
             'id_daftar_paket'=>'required',
@@ -135,6 +135,7 @@ class ReservasiController extends Controller
             'nilai_diskon'=>'required',
             'total_bayar'=>'required',
             'file_bukti_tf'=>'image',
+            'status_reservasi_wisata'=>'required'
         ]);
         $reservasi= Reservasi::find($id);
 
@@ -148,6 +149,7 @@ class ReservasiController extends Controller
         $reservasi-> diskon= $diskonDecimal;
         $reservasi-> nilai_diskon = $request->nilai_diskon;
         $reservasi-> total_bayar = $request->total_bayar;
+        $reservasi-> status_reservasi_wisata = $request->status_reservasi_wisata;
 
         if($request->hasFile('file_bukti_tf')) {
             if($reservasi->file_bukti_tf){
@@ -161,7 +163,11 @@ class ReservasiController extends Controller
         }
             $reservasi->save();
             
-            return redirect()->route('reservasi.index')->with('success_message', 'Berhasil mengubah reservasi!');
+            if(auth()->user()->level === 'pelanggan'){
+                return redirect()->route('reservasi.index')->with('success_message', 'Berhasil mengubah reservasi!');
+            }else{
+                return redirect()->route('reservasi.IndexOpr')->with('success_message', 'Berhasil mengubah reservasi!');
+            }
     }
 
     /**

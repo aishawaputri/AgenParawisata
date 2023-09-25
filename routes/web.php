@@ -3,6 +3,7 @@
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\ReservasiController;
 use App\Models\Pelanggan;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,7 @@ Route::resource('paket_wisata', \App\Http\Controllers\PaketWisataController::cla
 Route::resource('daftar_paket', \App\Http\Controllers\DaftarPaketController::class)->middleware('auth');
 
 Route::resource('reservasi', \App\Http\Controllers\ReservasiController::class)->middleware('auth');
+Route::get('reservasiOpr', [ReservasiController::class, 'IndexOpr'])->name('reservasi.IndexOpr');
 // Route::resource('profil_pelanggan',\App\Http\Controllers\ProfilPelangganController::class)->middleware('auth'); 
 
 Route::resource('laporan', \App\Http\Controllers\LaporanController::class)->middleware('auth');
